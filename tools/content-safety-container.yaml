@@ -1,0 +1,57 @@
+identity:
+  name: "content-safety-container"
+  author: "jiqing"
+  label:
+    en_US: "Text moderation"
+    zh_Hans: "文本审核"
+description:
+  human:
+    en_US: "Analyze text content using Azure AI Content Container Safety API to detect harmful content"
+    zh_Hans: "使用 Azure AI Content Safety Container API 分析文本内容，检测有害内容"
+  llm: "This tool analyzes text content for potential harmful content using Azure AI Content Safety API. It checks for categories like hate, sexual, violence, and self-harm content."
+parameters:
+  - name: text
+    type: string
+    required: true
+    label:
+      en_US: Text to Analyze
+      zh_Hans: 分析内容
+    human_description:
+      en_US: "The text content to analyze for safety"
+      zh_Hans: "要进行有害内容分析的文本内容，一般引用提示词和上下文"
+    llm_description: "The text content that needs to be analyzed for potential harmful content"
+    form: llm
+  - name: blocklist_names
+    type: string
+    required: false
+    label:
+      en_US: Blocklist Names
+      zh_Hans: 黑名单名称
+    human_description:
+      en_US: "Comma-separated list of blocklist names to check against"
+      zh_Hans: "在有害内容分析中使用的黑名单名称，多个用逗号分隔"
+    llm_description: "Optional comma-separated list of blocklist names to check the text against"
+    form: llm
+  - name: halt_on_blocklist_hit
+    type: boolean
+    required: false
+    label:
+      en_US: Halt on Blocklist Hit
+      zh_Hans: 命中黑名单时停止
+    human_description:
+      en_US: "Whether to halt processing when blocklist is hit"
+      zh_Hans: "设置为 true 时，若命中黑名单，则不会对有害内容进行进一步分析。设置为 false 时，无论是命中发黑名单，都会执行所有有害内容分析"
+    llm_description: "Whether to halt the analysis when text matches a blocklist entry"
+    form: llm
+extra:
+  python:
+    source: tools/content-safety-container.py
+output_schema:
+  type: object
+  properties:
+    CheckResult:
+      type: string
+      description: "Content safety check result: ALLOW, DENY, or ERROR"
+    Details:
+      type: string
+      description: "Detailed information when content is denied or error occurs"

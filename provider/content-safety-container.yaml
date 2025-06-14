@@ -1,0 +1,52 @@
+identity:
+  author: "jiqing"
+  name: "content-safety-container"
+  label:
+    en_US: "Text moderation"
+    zh_Hans: "文本审核"
+  description:
+    en_US: "Analyze text content using Azure AI Content Safety Container API to detect harmful content"
+    zh_Hans: "使用 Azure AI Content Safety Container API 分析文本内容，检测有害内容"
+  icon: "icon.svg"
+credentials_for_provider:
+  api_endpoint:
+    type: text-input
+    required: true
+    label:
+      en_US:  API Endpoint
+      zh_Hans: API 端点
+    help:
+      en_US: The  API endpoint URL including path and version parameters
+      zh_Hans: API 端点 URL，包括路径和版本参数
+  header_key:
+    type: text-input
+    required: false
+    label:
+      en_US: Custom Header Key (Optional)
+      zh_Hans: 自定义请求头键（可选）
+    placeholder:
+      en_US: Ocp-Apim-Subscription-Key
+      zh_Hans: Ocp-Apim-Subscription-Key
+    help:
+      en_US: Optional custom header key for API authentication
+      zh_Hans: 用于 API 认证的可选自定义请求头键
+  header_value:
+    type: secret-input
+    required: false
+    label:
+      en_US: Custom Header Value (Optional)
+      zh_Hans: 自定义请求头值（可选）
+    placeholder:
+      en_US: your-api-key
+      zh_Hans: your-api-key
+    help:
+      en_US: Optional custom header value for API authentication
+      zh_Hans: 用于 API 认证的可选自定义请求头值
+tools:
+  - tools/content-safety-container.yaml
+extra:
+  python:
+    source: provider/content-safety-container.py
+tags:
+  - content-safety
+  - text-moderation
