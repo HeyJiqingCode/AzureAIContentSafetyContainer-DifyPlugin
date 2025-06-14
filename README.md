@@ -12,26 +12,6 @@ Azure Content Safety is an AI service that detects harmful user-generated and AI
 
 Every harm category the service applies also comes with a severity level rating. The severity level is meant to indicate the severity of the consequences of showing the flagged content.
 
-<style>
-.custom-table {
-  border-collapse: collapse;
-  width: auto;
-}
-.custom-table th, .custom-table td {
-  border: none;
-}
-.custom-table tr:first-child th {
-  border-top: 2px solid black;
-}
-.custom-table tr:last-child td {
-  border-bottom: 2px solid black;
-}
-.custom-table td.cell-top-left {
-  vertical-align: top;
-  text-align: left;
-}
-</style>
-
 <table class="custom-table">
   <tr>
     <th>Category</th>
