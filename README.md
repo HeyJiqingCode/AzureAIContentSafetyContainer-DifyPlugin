@@ -114,7 +114,7 @@ Before using this plugin, make sure you have an Azure Content Safety container p
 
 **1）Get Text Moderation Tools**
 
-The Text Moderation Tools could be installed via Github/Local Package File, you can find difypkg [here]().
+The Text Moderation Tools could be installed via Github/Local Package File, you can find difypkg [here](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin/blob/dev/pkg/AzureAIContentSafetyContainer-DifyPlugin.difypkg).
 
 **2）Authentication**
 On the Dify navigation page, go to Tools > Text Moderation > Authorize to fill in the API Endpoint and optional headers.
