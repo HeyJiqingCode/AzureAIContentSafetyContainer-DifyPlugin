@@ -117,6 +117,7 @@ Before using this plugin, make sure you have an Azure Content Safety container p
 The Text Moderation Tools could be installed via Github/Local Package File, you can find difypkg [here](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin/blob/dev/pkg/AzureAIContentSafetyContainer-DifyPlugin.difypkg).
 
 **2）Authentication**
+
 On the Dify navigation page, go to Tools > Text Moderation > Authorize to fill in the API Endpoint and optional headers.
 
 ![img](./_assets/configuration_steps-2.png)
@@ -131,11 +132,11 @@ You can use this tool in both Chatflow and Workflow, and it allows you to separa
 
 ## Examples
 
-1）Example 1: Output with Multiple Harm Categories Matched
+**1）Example 1:** Output with Multiple Harm Categories Matched
 
 ![img](./_assets/examples-1.png)
 
-2）Example 2: Output with a Single Harm Category Matched
+**2）Example 2:** Output with a Single Harm Category Matched
 
 ![img](./_assets/examples-2.png)
 
