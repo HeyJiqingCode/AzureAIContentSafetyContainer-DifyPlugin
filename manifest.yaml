@@ -3,11 +3,11 @@ type: plugin
 author: jiqing
 name: content-safety-container
 label:
-  en_US: content-safety-container
-  zh_Hans: content-safety-container
-description:
   en_US: Azure AI Content Safety Container
   zh_Hans: Azure AI Content Safety Container
+description:
+  en_US: Azure AI Content Safety Container for Text Moderation
+  zh_Hans: Azure AI Content Safety Container for Text Moderation
 icon: icon.svg
 resource:
   memory: 268435456

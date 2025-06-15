@@ -2,11 +2,11 @@ identity:
   author: "jiqing"
   name: "content-safety-container"
   label:
-    en_US: "Text moderation"
-    zh_Hans: "文本审核"
+    en_US: "Azure AI Content Safety Container"
+    zh_Hans: "Azure AI Container Safety Container"
   description:
-    en_US: "Analyze text content using Azure AI Content Safety Container API to detect harmful content"
-    zh_Hans: "使用 Azure AI Content Safety Container API 分析文本内容，检测有害内容"
+    en_US: "Azure AI Content Safety Container API for Text Moderation"
+    zh_Hans: "Azure AI Content Safety Container API for Text Moderation"
   icon: "icon.svg"
 credentials_for_provider:
   api_endpoint:
