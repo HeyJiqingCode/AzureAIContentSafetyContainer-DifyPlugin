@@ -1,14 +1,14 @@
-# Azure Content Safety Container
+# Azure AI Content Safety Container
 
 > **DISCLAIMER:** This software is provided "as is" and the author disclaims all warranties with regard to this software including all implied warranties of merchantability and fitness. In no event shall the author be liable for any special, direct, indirect, or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software.
 > 
-> **SECURITY:** This plugin processes text content through external API calls to Azure Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
+> **SECURITY:** This plugin processes text content through external API calls to Azure AI Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
 
 ## Overview
 
-### Azure Content Safety
+### Azure AI Content Safety
 
-Azure Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure Content Safety includes text and image APIs that allow you to detect material that is harmful. 
+Azure AI Content Safety is an AI service that detects harmful user-generated and AI-generated content in applications and services. Azure AI Content Safety includes text and image APIs that allow you to detect material that is harmful. 
 
 Every harm category the service applies also comes with a severity level rating. The severity level is meant to indicate the severity of the consequences of showing the flagged content.
 
@@ -68,12 +68,12 @@ This includes, but isn't limited to:
 
 The current version of the text model supports the full 0-7 severity scale. The classifier detects among all severities along this scale. If the user specifies, it can return severities in the trimmed scale of 0, 2, 4, and 6; each two adjacent levels are mapped to a single level.
 
-### Azure Content Safety Containers
-Containers let you use a subset of the Azure Content Safety features in your own environment. With content safety containers, you can build a content safety application architecture optimized for both robust cloud capabilities and edge locality. Containers help you meet specific security and data governance requirements.
+### Azure AI Content Safety Containers
+Containers let you use a subset of the Azure AI Content Safety features in your own environment. With content safety containers, you can build a content safety application architecture optimized for both robust cloud capabilities and edge locality. Containers help you meet specific security and data governance requirements.
 
-### Dify Plugin for Azure Content Safety Containers
+### Dify Plugin for Azure AI Content Safety Containers
 
-This is a Dify plugin that integrates with the [Azure Content Safety Container API - Text](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text) to analyze text content for harmful material. The plugin can detect various types of harmful content including hate speech, violence, sexual content, and self-harm.
+This is a Dify plugin that integrates with the [Azure AI Content Safety Container API - Text](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text) to analyze text content for harmful material. The plugin can detect various types of harmful content including hate speech, violence, sexual content, and self-harm.
 
 ### Features
 
@@ -88,7 +88,7 @@ This is a Dify plugin that integrates with the [Azure Content Safety Container A
 
 ### Prerequisites
 
-Before using this plugin, make sure you have an Azure Content Safety container properly set up and running. See [Install and run content safety containers with Docker](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/how-to/containers/install-run-container) for setup instructions. Please verify that your container is accessible and responding to API requests before configuring this plugin.
+Before using this plugin, make sure you have an Azure AI Content Safety container properly set up and running. See [Install and run content safety containers with Docker](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/how-to/containers/install-run-container) for setup instructions. Please verify that your container is accessible and responding to API requests before configuring this plugin.
 
 ### Steps
 
