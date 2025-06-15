@@ -68,7 +68,7 @@ This includes, but isn't limited to:
 
 The current version of the text model supports the full 0-7 severity scale. The classifier detects among all severities along this scale. If the user specifies, it can return severities in the trimmed scale of 0, 2, 4, and 6; each two adjacent levels are mapped to a single level.
 
-### Azure AI Content Safety Containers
+### Azure AI Content Safety Container
 Containers let you use a subset of the Azure AI Content Safety features in your own environment. With content safety containers, you can build a content safety application architecture optimized for both robust cloud capabilities and edge locality. Containers help you meet specific security and data governance requirements.
 
 ### Dify Plugin for Azure AI Content Safety Container
