@@ -101,7 +101,7 @@ def parse_content_safety_result(api_response: Dict[str, Any]) -> Dict[str, str]:
             
             # Assemble final Details format
             violation_text = "\n".join(violation_lines)
-            details = f"## Harmful Content Detected !\n Your input contains sensitive information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!\n___\n**Detected Categories:**{violation_text}\n> Severity levels range from 0 (lowest) to 7 (highest)"
+            details = f"## Harmful Content Detected !\n Your input contains harmful information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!\n___\n**Detected Categories:**{violation_text}\n> Severity levels range from 0 (lowest) to 7 (highest)"
             
             return {
                 "CheckResult": "DENY",
