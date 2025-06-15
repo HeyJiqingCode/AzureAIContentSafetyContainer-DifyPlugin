@@ -92,13 +92,13 @@ Before using this plugin, make sure you have an Azure Content Safety container p
 
 ### Steps
 
-**1）Get Text Moderation Tools**
+**1）Get Azure AI Content Safety Container Tools**
 
-The Text Moderation Tools could be installed via Github/Local Package File, you can find difypkg [here](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin/blob/dev/pkg/AzureAIContentSafetyContainer-DifyPlugin.difypkg).
+The Azure AI Content Safety Container Tools could be installed via Github/Local Package File, you can find difypkg [here](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin/blob/dev/pkg/AzureAIContentSafetyContainer-DifyPlugin.difypkg).
 
 **2）Authentication**
 
-On the Dify navigation page, go to Tools > Text Moderation > Authorize to fill in the API Endpoint and optional headers.
+On the Dify navigation page, go to Tools > Azure AI Content Safety Container > Authorize to fill in the API Endpoint and optional headers.
 
 ![img](./_assets/configuration_steps-2.png)
 ![img](./_assets/configuration_steps-1.png)
