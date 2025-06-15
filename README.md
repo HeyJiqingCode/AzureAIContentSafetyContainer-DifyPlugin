@@ -94,7 +94,7 @@ Before using this plugin, make sure you have an Azure AI Content Safety containe
 
 **1）Get Azure AI Content Safety Container Tools**
 
-The Azure AI Content Safety Container Tools could be installed via Github/Local Package File, you can find difypkg [here](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin/blob/dev/pkg/AzureAIContentSafetyContainer-DifyPlugin.difypkg).
+The Azure AI Content Safety Container Tools could be installed via Plugin Marketplace/Github/Local Package File, please install it.
 
 **2）Authentication**
 
