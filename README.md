@@ -71,7 +71,7 @@ The current version of the text model supports the full 0-7 severity scale. The 
 ### Azure AI Content Safety Containers
 Containers let you use a subset of the Azure AI Content Safety features in your own environment. With content safety containers, you can build a content safety application architecture optimized for both robust cloud capabilities and edge locality. Containers help you meet specific security and data governance requirements.
 
-### Dify Plugin for Azure AI Content Safety Containers
+### Dify Plugin for Azure AI Content Safety Container
 
 This is a Dify plugin that integrates with the [Azure AI Content Safety Container API - Text](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text) to analyze text content for harmful material. The plugin can detect various types of harmful content including hate speech, violence, sexual content, and self-harm.
 
