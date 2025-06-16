@@ -120,6 +120,10 @@ You can use this tool in both Chatflow and Workflow, and it allows you to separa
 
 ![img](./_assets/examples-2.png)
 
+## More Details
+
+See [Secure your AI Apps with Azure AI Content Safety Container](https://heyjiqing.notion.site/Secure-your-AI-Apps-with-Azure-AI-Content-Safety-Container-214de7b6e4e88008a072ccb0e6a0f1d6) 
+
 
 
 
