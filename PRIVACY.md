@@ -60,7 +60,3 @@ Users have the right to:
 ### 8. Privacy Policy Updates
 
 This privacy policy may be revised based on feature updates or legal requirements. Major updates will be communicated to users through appropriate means.
-
-### 9. Contact Information
-
-For any questions about this privacy policy, please contact the plugin developer: jiqing
