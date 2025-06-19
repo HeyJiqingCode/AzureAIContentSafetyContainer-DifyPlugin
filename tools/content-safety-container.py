@@ -23,9 +23,14 @@ class ContentSafetyContainerTool(Tool):
         # Get configuration information from credentials
         credentials = self.runtime.credentials
         api_endpoint = credentials.get("api_endpoint", "")
+        api_version = credentials.get("api_version", "")
         
         if not api_endpoint:
-            yield self.create_text_message("Error: Complete API endpoint not configured, please configure in plugin settings")
+            yield self.create_text_message("Error: API endpoint not configured, please configure in plugin settings")
+            return
+            
+        if not api_version:
+            yield self.create_text_message("Error: API version not configured, please configure in plugin settings")
             return
         
         # Get optional authentication information
@@ -46,6 +51,7 @@ class ContentSafetyContainerTool(Tool):
             # Call Content Safety API
             api_response = analyze_content_safety(
                 api_endpoint=api_endpoint,
+                api_version=api_version,
                 text=text,
                 header_key=header_key,
                 header_value=header_value,

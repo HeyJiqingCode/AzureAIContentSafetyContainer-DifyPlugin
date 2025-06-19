@@ -4,6 +4,7 @@ from typing import Dict, Any, Optional, Union
 
 def analyze_content_safety(
     api_endpoint: str,
+    api_version: str,
     text: str,
     header_key: Optional[str] = None,
     header_value: Optional[str] = None,
@@ -14,7 +15,8 @@ def analyze_content_safety(
     Call Azure AI Content Safety API to analyze text content
     
     Args:
-        api_endpoint: Complete API endpoint URL (including path and version parameters)
+        api_endpoint: Base API endpoint URL (e.g., https://your-endpoint.com)
+        api_version: API version (e.g., 2024-09-01)
         text: Text content to analyze
         header_key: Optional custom header key
         header_value: Optional custom header value
@@ -27,8 +29,9 @@ def analyze_content_safety(
     Raises:
         Exception: If API call fails
     """
-    # Use the complete URL directly
-    url = api_endpoint
+    # Construct complete URL
+    base_url = api_endpoint.rstrip('/')
+    url = f"{base_url}/contentsafety/text:analyze?api-version={api_version}"
     
     # Set request headers
     headers = {

@@ -16,21 +16,17 @@ class ContentSafetyContainerProvider(ToolProvider):
         try:
             # Get required credentials
             api_endpoint = credentials.get("api_endpoint")
+            api_version = credentials.get("api_version")
             
             if not api_endpoint:
-                raise ToolProviderCredentialValidationError("Complete API endpoint is required")
+                raise ToolProviderCredentialValidationError("API endpoint is required")
+            
+            if not api_version:
+                raise ToolProviderCredentialValidationError("API version is required")
             
             # Validate endpoint format
             if not api_endpoint.startswith(("http://", "https://")):
                 raise ToolProviderCredentialValidationError("API endpoint must start with http:// or https://")
-            
-            # Validate URL contains necessary path
-            if "/contentsafety/text:analyze" not in api_endpoint:
-                raise ToolProviderCredentialValidationError("API endpoint must contain /contentsafety/text:analyze path")
-            
-            # Validate URL contains version parameter
-            if "api-version=" not in api_endpoint:
-                raise ToolProviderCredentialValidationError("API endpoint must contain api-version parameter")
             
             # Get optional authentication information
             header_key = credentials.get("header_key")
@@ -38,12 +34,13 @@ class ContentSafetyContainerProvider(ToolProvider):
             
             # Perform actual API validation by making a test call
             try:
-                # Use simple "text" as test content for validation
+                # Use simple "test" as test content for validation
                 validation_text = "test"
                 
-                # Call the API using the existing utility function
+                # Call the API using the updated utility function
                 api_response = analyze_content_safety(
                     api_endpoint=api_endpoint,
+                    api_version=api_version,
                     text=validation_text,
                     header_key=header_key,
                     header_value=header_value
@@ -51,7 +48,9 @@ class ContentSafetyContainerProvider(ToolProvider):
                 
                 # If we got here, the API call succeeded
                 print(f"✅ Configuration validation passed:")
-                print(f"  Complete endpoint: {api_endpoint}")
+                print(f"  Base endpoint: {api_endpoint}")
+                print(f"  API version: {api_version}")
+                print(f"  Full URL: {api_endpoint.rstrip('/')}/contentsafety/text:analyze?api-version={api_version}")
                 print(f"  API connectivity: Successfully connected")
                 
                 # Only display when Header is actually configured
