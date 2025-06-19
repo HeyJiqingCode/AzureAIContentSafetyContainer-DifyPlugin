@@ -98,7 +98,7 @@ The Azure AI Content Safety Container Tools could be installed via Plugin Market
 
 **2）Authentication**
 
-On the Dify navigation page, go to Tools > Azure AI Content Safety Container > Authorize to fill in the API Endpoint and optional headers.
+On the Dify navigation page, go to Tools > Azure AI Content Safety Container > To Authorize to fill in the API Endpoint, API Version and optional headers.
 
 ![img](./_assets/configuration_steps-2.png)
 ![img](./_assets/configuration_steps-1.png)
