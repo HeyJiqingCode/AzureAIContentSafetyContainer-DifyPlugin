@@ -1,8 +1,10 @@
 # Azure AI Content Safety Container
 
-> **DISCLAIMER:** This software is provided "as is" and the author disclaims all warranties with regard to this software including all implied warranties of merchantability and fitness. In no event shall the author be liable for any special, direct, indirect, or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software.
+> ⚠️ **DISCLAIMER:** This software is provided "as is" and the author disclaims all warranties with regard to this software including all implied warranties of merchantability and fitness. In no event shall the author be liable for any special, direct, indirect, or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software.
 > 
-> **SECURITY:** This plugin processes text and image content through external API calls to Azure AI Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
+> 🔒 **SECURITY:** This plugin processes text and image content through external API calls to Azure AI Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
+>
+> 🚨 **DATASET:** The `dataset/` folder contains test data used solely for penetration testing and security validation purposes. This data includes harmful text prompts, offensive language blocklists, and potentially harmful image references. These materials do **NOT** represent the author's views, opinions, beliefs, or values in any way. The author expressly disclaims any association with or endorsement of the content in these test datasets. This data is provided purely for technical testing and should be used responsibly and in compliance with applicable laws and ethical guidelines. Users are solely responsible for how they use this test data.
 
 ## Overview
 
@@ -83,7 +85,7 @@ This is a Dify plugin that integrates with the [Azure AI Content Safety Containe
 - **Combined Results**: Get a single, structured result summarizing findings from both text and image analysis.
 - **Clear Decisions**: Outputs a clear `ALLOW` or `DENY` check result.
 - **Detailed & Formatted Output**: Provides formatted violation details.
-- **Raw Data Access**: Includes a `RawResults` output variable with the original JSON from the API for advanced use cases.
+- **Raw Data Access**: Includes a `RawResults` output with the original JSON for advanced use cases.
 
 ## Configuration
 
@@ -181,6 +183,18 @@ The tool provides several output variables for use in your workflow:
   ]
 }
 ```
+
+## Test Dataset
+
+The `dataset/` folder contains test data for security validation and penetration testing. **This data does not represent the author's views and is provided solely for technical testing purposes.**
+
+### Contents
+- `harmful_text.csv` - Test prompts for content safety detection
+- `test_block_list_cn.csv` - Chinese blocklist for filtering tests  
+- `test_block_list_en.csv` - English blocklist for filtering tests
+- `harmful_image.csv` - Image references for safety testing
+
+⚠️ **Disclaimer**: Test data is for security validation only. Users are responsible for compliance with applicable laws and ethical guidelines.
 
 ## More Details
 
