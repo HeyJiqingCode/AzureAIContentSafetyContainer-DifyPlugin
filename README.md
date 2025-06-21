@@ -91,7 +91,34 @@ This is a Dify plugin that integrates with the [Azure AI Content Safety Containe
 
 ### Prerequisites
 
-Before using this plugin, make sure you have an Azure AI Content Safety container properly set up and running. See [Install and run content safety containers with Docker](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/how-to/containers/install-run-container) for setup instructions. Please verify that your container is accessible and responding to API requests before configuring this plugin.
+**1）Deploy Azure AI Content Safety Container**
+
+Before using this plugin, make sure you have an Azure AI Content Safety Container properly set up and running. See [Install and run content safety containers with Docker](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/how-to/containers/install-run-container) for setup instructions. Please verify that your container is accessible and responding to API requests before configuring this plugin.
+
+**2）Update Dify ENV**
+
+When users send images to the chatbox, `url` that can be used to access the image will be generated in `sys.files` (each image corresponds to one url). The image moderation tool obtains the image by accessing these `url`, converts it to base64, and then sends it to the Image Analyze API for review. Therefore, the correct `FILES_URL` or `CONSOLE_API_URL` must be set in order to generate a corresponding accessible url. Generally, this should be consistent with the main domain name used to access the Dify Portal.
+
+The structure of `sys.files` is as follows:
+
+```json
+[
+  {
+    "dify_model_identity": "__dify__file__",
+    "id": null,
+    "tenant_id": "7720c6b6-73a5-457f-93a2-66075982fe02",
+    "type": "image",
+    "transfer_method": "local_file",
+    "remote_url": "https://upload.dify.ai/files/xxxxxxxx",
+    "related_id": "4763ef42-1bca-44d1-b12b-bee0e841b719",
+    "filename": "image_moderation_1.jpg",
+    "extension": ".jpg",
+    "mime_type": "image/jpeg",
+    "size": 39886,
+    "url": "https://upload.dify.ai/files/xxxxxxxx"
+  }
+]
+```
 
 ### Steps
 
@@ -116,6 +143,8 @@ You can use this tool in Chatflow or Workflow. The tool accepts both text and im
 - `Images to Analyze`: The image files to analyze.
 - `Text Blocklist Names`: Comma-separated list of blocklist names for text analysis.
 - `Halt on Blocklist Hit`: Whether to stop text analysis if a blocklist item is matched.
+
+> All parameters are optional. The tool automatically detects when Text or Image inputs are provided (non-empty) and calls the corresponding APIs for content moderation accordingly.
 
 **Image Requirements:**
 - Maximum size: 7,200 x 7,200 pixels
