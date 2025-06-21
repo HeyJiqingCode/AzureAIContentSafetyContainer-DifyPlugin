@@ -21,17 +21,6 @@ parameters:
       zh_Hans: "要进行有害内容分析的文本内容，一般引用 sys.query"
     llm_description: "The text content that needs to be analyzed for potential harmful content"
     form: llm
-  - name: image
-    type: files
-    required: false
-    label:
-      en_US: Images to Analyze
-      zh_Hans: 待分析图片
-    human_description:
-      en_US: "The image content to analyze for safety"
-      zh_Hans: "要进行有害内容分析的图片内容，一般引用 sys.files"
-    llm_description: "The image content that needs to be analyzed for potential harmful content"
-    form: llm
   - name: blocklist_names
     type: string
     required: false
@@ -42,6 +31,17 @@ parameters:
       en_US: "Comma-separated list of blocklist names to check against"
       zh_Hans: "在有害内容分析中使用的黑名单名称，多个用逗号分隔"
     llm_description: "Optional comma-separated list of blocklist names to check the text against"
+    form: llm
+  - name: image
+    type: files
+    required: false
+    label:
+      en_US: Images to Analyze
+      zh_Hans: 待分析图片
+    human_description:
+      en_US: "The image content to analyze for safety"
+      zh_Hans: "要进行有害内容分析的图片内容，一般引用 sys.files"
+    llm_description: "The image content that needs to be analyzed for potential harmful content"
     form: llm
   - name: halt_on_blocklist_hit
     type: boolean
@@ -66,3 +66,6 @@ output_schema:
     Details:
       type: string
       description: "Detailed information when content is denied or error occurs"
+    RawResults:
+      type: object
+      description: "The raw JSON responses from the content safety APIs for both text and image analysis"

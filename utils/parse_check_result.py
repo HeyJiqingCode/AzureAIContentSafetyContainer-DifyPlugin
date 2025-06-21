@@ -1,52 +1,87 @@
-from typing import Dict, Any
+from typing import Dict, Any, List, Optional
 
-def parse_check_result(api_response: Dict[str, Any]) -> Dict[str, str]:
+def parse_check_result(
+    text_response: Optional[Dict[str, Any]], 
+    image_responses: Optional[List[Dict[str, Any]]]
+) -> Dict[str, Any]:
     try:
-        categories_analysis = api_response.get("categoriesAnalysis", [])
+        final_check_result = "ALLOW"
+        all_blocklist_items = []
+        all_dangerous_categories = []
         
-        # Check if any category has severity not equal to 0
-        dangerous_categories = []
-        for category in categories_analysis:
-            category_name = category.get("category", "")
-            severity = category.get("severity", 0)
+        raw_results = {
+            "text": text_response or {},
+            "image": image_responses or []
+        }
+
+        # Process text response
+        if text_response:
+            # Handle blocklist matches
+            blocklists_match = text_response.get("blocklistsMatch", [])
+            for item in blocklists_match:
+                all_blocklist_items.append(item.get("blocklistItemText", ""))
             
-            if severity > 0:
-                dangerous_categories.append({
-                    "category": category_name,
-                    "severity": severity
-                })
+            # Handle category analysis
+            text_categories = text_response.get("categoriesAnalysis", [])
+            for category in text_categories:
+                if category.get("severity", 0) > 0:
+                    all_dangerous_categories.append({
+                        "source": "text",
+                        "category": category.get("category"),
+                        "severity": category.get("severity")
+                    })
+
+        # Process image responses
+        if image_responses:
+            for image_response in image_responses:
+                # Handle errors from image analysis function
+                if "error" in image_response:
+                    all_dangerous_categories.append({
+                        "source": "image",
+                        "category": f"Processing Error: {image_response['error']}",
+                        "severity": "N/A"
+                    })
+                    continue
+                
+                image_categories = image_response.get("categoriesAnalysis", [])
+                for category in image_categories:
+                    if category.get("severity", 0) > 0:
+                        all_dangerous_categories.append({
+                            "source": "image",
+                            "category": category.get("category"),
+                            "severity": category.get("severity")
+                        })
         
-        if dangerous_categories:
-            # Has dangerous content, return DENY
-            # Build details_text (brief information in parentheses)
-            details_parts = []
-            for cat in dangerous_categories:
-                details_parts.append(f"Category: {cat['category']}, SeverityLevel: {cat['severity']}")
-            details_text = " ".join(details_parts)
+        # Determine final result
+        if all_blocklist_items or all_dangerous_categories:
+            final_check_result = "DENY"
+
+        # Build response
+        if final_check_result == "DENY":
+            details = "## Harmful Content Detected !\n\n"
+            details += "Your input contains harmful information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!\n\n"
+            details += "___\n\n"
+
+            if all_blocklist_items:
+                details += "### BlockListsMatched:\n\n"
+                details += ", ".join([f"`{item}`" for item in all_blocklist_items])
+                details += "\n\n"
+
+            if all_dangerous_categories:
+                details += "### CategoriesAnalysis:\n\n"
+                num_categories = len(all_dangerous_categories)
+                for cat in all_dangerous_categories:
+                    # Format the line with inline code for source and bold for category
+                    line = f"- `{cat['source']}` **{cat['category']}** (SeverityLevel: {cat['severity']})"
+                    # Add a semicolon only if there are multiple categories
+                    if num_categories > 1:
+                        line += ";"
+                    details += f"{line}\n"
+                details += "\n> Text severity: 0–7; Image severity: 0, 2, 4, 6; higher means more severe.\n"
             
-            # Build detailed violation information
-            violation_lines = []
-            for i, cat in enumerate(dangerous_categories):
-                if len(dangerous_categories) > 1:
-                    # Multiple results end each line with semicolon
-                    violation_lines.append(f"\n- `text` **{cat['category']}** (SeverityLevel: {cat['severity']});")
-                else:
-                    # Single result without semicolon
-                    violation_lines.append(f"\n- `text` **{cat['category']}** (SeverityLevel: {cat['severity']})")
-            
-            # Assemble final Details format
-            violation_text = "\n".join(violation_lines)
-            details = f"## Harmful Content Detected !\n Your input contains harmful information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!\n___\n**Details:**{violation_text}\n> Text severity: 0–7; Image severity: 0, 2, 4, 6; higher means more severe."
-            
-            return {
-                "CheckResult": "DENY",
-                "Details": details
-            }
+            return {"CheckResult": "DENY", "Details": details, "RawResults": raw_results}
         else:
-            # No dangerous content, return ALLOW
-            return {
-                "CheckResult": "ALLOW"
-            }
+            return {"CheckResult": "ALLOW", "Details": "", "RawResults": raw_results}
             
     except Exception as e:
         raise Exception(f"Failed to parse Content Safety results: {str(e)}")

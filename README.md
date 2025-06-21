@@ -2,7 +2,7 @@
 
 > **DISCLAIMER:** This software is provided "as is" and the author disclaims all warranties with regard to this software including all implied warranties of merchantability and fitness. In no event shall the author be liable for any special, direct, indirect, or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software.
 > 
-> **SECURITY:** This plugin processes text content through external API calls to Azure AI Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
+> **SECURITY:** This plugin processes text and image content through external API calls to Azure AI Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
 
 ## Overview
 
@@ -34,7 +34,7 @@ This includes, but is not limited to:
   </tr>
   <tr>
     <td class="cell-top-left">Sexual</td>
-    <td>Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one’s will. 
+    <td>Sexual describes language related to anatomical organs and genitals, romantic relationships and sexual acts, acts portrayed in erotic or affectionate terms, including those portrayed as an assault or a forced sexual violent act against one's will. 
 
 This includes but is not limited to:
 - Vulgar content
@@ -57,7 +57,7 @@ This includes, but isn't limited to:
   </tr>
   <tr>
     <td class="cell-top-left">Self-Harm</td>
-    <td>Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one’s body or kill oneself.
+    <td>Self-harm describes language related to physical actions intended to purposely hurt, injure, damage one's body or kill oneself.
 
 This includes, but isn't limited to:
 - Eating Disorders
@@ -73,16 +73,17 @@ Containers let you use a subset of the Azure AI Content Safety features in your 
 
 ### Dify Plugin for Azure AI Content Safety Container
 
-This is a Dify plugin that integrates with the [Azure AI Content Safety Container API - Text](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/quickstart-text) to analyze text content for harmful material. The plugin can detect various types of harmful content including hate speech, violence, sexual content, and self-harm.
+This is a Dify plugin that integrates with the [Azure AI Content Safety Container](https://learn.microsoft.com/en-us/azure/ai-services/content-safety/overview) to analyze both text and image content for harmful material. The plugin can detect various types of harmful content including hate speech, violence, sexual content, and self-harm.
 
 ### Features
 
-- Support for custom API endpoints configuration;
-- Optional custom request headers for authentication;
-- Blocklist validation support;
-- Automatic API response parsing with structured results;
-- Risk-based ALLOW/DENY decisions;
-- Detailed error messages and safety recommendations;
+- **Unified Moderation**: Analyze both text and images in a single tool.
+- **Custom Configuration**: Support for custom API endpoints and optional authentication headers.
+- **Text Blocklists**: Utilize blocklists for more precise text content filtering.
+- **Combined Results**: Get a single, structured result summarizing findings from both text and image analysis.
+- **Clear Decisions**: Outputs a clear `ALLOW` or `DENY` check result.
+- **Detailed & Formatted Output**: Provides formatted violation details.
+- **Raw Data Access**: Includes a `RawResults` output variable with the original JSON from the API for advanced use cases.
 
 ## Configuration
 
@@ -105,21 +106,82 @@ On the Dify navigation page, go to Tools > Azure AI Content Safety Container > T
 
 **3）Using the tool**
 
-You can use this tool in Chatflow or Workflow.
+You can use this tool in Chatflow or Workflow. The tool accepts both text and image inputs.
+
+- `Text to Analyze`: The text content to analyze.
+- `Images to Analyze`: The image files to analyze.
+- `Text Blocklist Names`: Comma-separated list of blocklist names for text analysis.
+- `Halt on Blocklist Hit`: Whether to stop text analysis if a blocklist item is matched.
 
 ![img](./_assets/configuration_steps-3.png)
 
 
 ## Examples
 
-**1）Example 1:** Output with Multiple Harm Categories Matched
+The plugin provides a detailed, formatted output in the `Details` variable when harmful content is detected.
 
-![img](./_assets/examples-1.png)
+**1）Example: Combined Text and Image Moderation**
 
-**2）Example 2:** Output with a Single Harm Category Matched
+When both text and an image contain harmful content, the results are intelligently combined.
 
-![img](./_assets/examples-2.png)
+*Input:*
+- **Text**: "I hate you, I want to kill you."
+- **Image**: An image with sexually suggestive content.
+
+*Output (`Details` variable):*
+```markdown
+## Harmful Content Detected !
+
+Your input contains harmful information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!
+
+___
+
+### BlockListsMatched:
+
+`kill`
+
+### CategoriesAnalysis:
+
+- `text` **hate** (SeverityLevel: 6);
+- `text` **violence** (SeverityLevel: 7);
+- `image` **sexual** (SeverityLevel: 4);
+
+> Text severity: 0–7; Image severity: 0, 2, 4, 6; higher means more severe.
+```
+
+## Output Variables
+
+The tool provides several output variables for use in your workflow:
+
+- `CheckResult`: The final decision (`ALLOW`, `DENY`, or `ERROR`).
+- `Details`: A user-friendly, formatted string explaining the violations (only present if `CheckResult` is `DENY`).
+- `RawResults`: A JSON object containing the raw, unmodified responses from the Azure APIs. This is useful for custom parsing or logging.
+
+*Example `RawResults` structure:*
+```json
+{
+  "text": {
+    "blocklistsMatch": [],
+    "categoriesAnalysis": [
+      {
+        "category": "Hate",
+        "severity": 6
+      }
+    ]
+  },
+  "image": [
+    {
+      "categoriesAnalysis": [
+        {
+          "category": "Sexual",
+          "severity": 4
+        }
+      ]
+    }
+  ]
+}
+```
 
 ## More Details
 
-See [Secure your AI Apps with Azure AI Content Safety Container](https://heyjiqing.notion.site/Secure-your-AI-Apps-with-Azure-AI-Content-Safety-Container-214de7b6e4e88008a072ccb0e6a0f1d6) 
+See [Secure your AI Apps with Azure AI Content Safety Container](https://heyjiqing.notion.site/Secure-your-AI-Apps-with-Azure-AI-Content-Safety-Container-214de7b6e4e88008a072ccb0e6a0f1d6)
