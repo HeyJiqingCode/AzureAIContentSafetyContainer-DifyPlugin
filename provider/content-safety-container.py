@@ -1,11 +1,9 @@
 from typing import Any
-import requests
-
 from dify_plugin import ToolProvider
 from dify_plugin.errors.tool import ToolProviderCredentialValidationError
 
 # Import utility functions for actual API validation
-from utils.content_safety_api import analyze_content_safety
+from utils.text_content_safety import analyze_text_content_safety
 
 
 class ContentSafetyContainerProvider(ToolProvider):
@@ -38,7 +36,7 @@ class ContentSafetyContainerProvider(ToolProvider):
                 validation_text = "test"
                 
                 # Call the API using the updated utility function
-                api_response = analyze_content_safety(
+                api_response = analyze_text_content_safety(
                     api_endpoint=api_endpoint,
                     api_version=api_version,
                     text=validation_text,

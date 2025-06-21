@@ -2,31 +2,42 @@ identity:
   name: "content-safety-container"
   author: "jiqing"
   label:
-    en_US: "Text moderation"
-    zh_Hans: "文本审核"
+    en_US: "Content moderation"
+    zh_Hans: "内容审核"
 description:
   human:
-    en_US: "Analyze text content using Azure AI Content Container Safety API to detect harmful content"
-    zh_Hans: "使用 Azure AI Content Safety Container API 分析文本内容，检测有害内容"
-  llm: "This tool analyzes text content for potential harmful content using Azure AI Content Safety API. It checks for categories like hate, sexual, violence, and self-harm content."
+    en_US: "Analyze text and images to detect harmful content using Azure AI Content Safety Container."
+    zh_Hans: "使用 Azure AI Content Safety Container 分析文本和图像，以检测有害内容。"
+  llm: "This tool analyzes text and images for potential harmful content using Azure AI Content Safety API. It checks for categories like hate, sexual, violence, and self-harm content."
 parameters:
   - name: text
     type: string
-    required: true
+    required: false
     label:
       en_US: Text to Analyze
-      zh_Hans: 分析内容
+      zh_Hans: 待分析文本
     human_description:
       en_US: "The text content to analyze for safety"
-      zh_Hans: "要进行有害内容分析的文本内容，一般引用提示词和上下文"
+      zh_Hans: "要进行有害内容分析的文本内容，一般引用 sys.query"
     llm_description: "The text content that needs to be analyzed for potential harmful content"
+    form: llm
+  - name: image
+    type: files
+    required: false
+    label:
+      en_US: Images to Analyze
+      zh_Hans: 待分析图片
+    human_description:
+      en_US: "The image content to analyze for safety"
+      zh_Hans: "要进行有害内容分析的图片内容，一般引用 sys.files"
+    llm_description: "The image content that needs to be analyzed for potential harmful content"
     form: llm
   - name: blocklist_names
     type: string
     required: false
     label:
-      en_US: Blocklist Names
-      zh_Hans: 黑名单名称
+      en_US: Text Blocklist Names
+      zh_Hans: 文本黑名单名称
     human_description:
       en_US: "Comma-separated list of blocklist names to check against"
       zh_Hans: "在有害内容分析中使用的黑名单名称，多个用逗号分隔"

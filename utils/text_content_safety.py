@@ -1,8 +1,7 @@
 import requests
 from typing import Dict, Any, Optional, Union
 
-
-def analyze_content_safety(
+def analyze_text_content_safety(
     api_endpoint: str,
     api_version: str,
     text: str,
@@ -11,24 +10,7 @@ def analyze_content_safety(
     blocklist_names: Optional[list] = None,
     halt_on_blocklist_hit: Optional[bool] = None
 ) -> Dict[str, Any]:
-    """
-    Call Azure AI Content Safety API to analyze text content
-    
-    Args:
-        api_endpoint: Base API endpoint URL (e.g., https://your-endpoint.com)
-        api_version: API version (e.g., 2024-09-01)
-        text: Text content to analyze
-        header_key: Optional custom header key
-        header_value: Optional custom header value
-        blocklist_names: Optional blocklist names list
-        halt_on_blocklist_hit: Optional flag to halt when blocklist is hit
-        
-    Returns:
-        Dictionary containing analysis results
-        
-    Raises:
-        Exception: If API call fails
-    """
+
     # Construct complete URL
     base_url = api_endpoint.rstrip('/')
     url = f"{base_url}/contentsafety/text:analyze?api-version={api_version}"
@@ -60,15 +42,6 @@ def analyze_content_safety(
 
 
 def parse_content_safety_result(api_response: Dict[str, Any]) -> Dict[str, str]:
-    """
-    Parse Content Safety API response results
-    
-    Args:
-        api_response: JSON response returned by API
-        
-    Returns:
-        Parsed result dictionary containing CheckResult and possible Details
-    """
     try:
         categories_analysis = api_response.get("categoriesAnalysis", [])
         
@@ -97,14 +70,14 @@ def parse_content_safety_result(api_response: Dict[str, Any]) -> Dict[str, str]:
             for i, cat in enumerate(dangerous_categories):
                 if len(dangerous_categories) > 1:
                     # Multiple results end each line with semicolon
-                    violation_lines.append(f"\n- **{cat['category']}** (SeverityLevel: {cat['severity']});")
+                    violation_lines.append(f"\n- `text` **{cat['category']}** (SeverityLevel: {cat['severity']});")
                 else:
                     # Single result without semicolon
-                    violation_lines.append(f"\n- **{cat['category']}** (SeverityLevel: {cat['severity']})")
+                    violation_lines.append(f"\n- `text` **{cat['category']}** (SeverityLevel: {cat['severity']})")
             
             # Assemble final Details format
             violation_text = "\n".join(violation_lines)
-            details = f"## Harmful Content Detected !\n Your input contains harmful information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!\n___\n**Detected Categories:**{violation_text}\n> Severity levels range from 0 (lowest) to 7 (highest)"
+            details = f"## Harmful Content Detected !\n Your input contains harmful information(e.g., **hate and fairness**, **sexual**, **violence**, or **self-harm**), please remove or modify such content and try again!\n___\n**Details:**{violation_text}\n> Text severity: 0–7; Image severity: 0, 2, 4, 6; higher means more severe."
             
             return {
                 "CheckResult": "DENY",

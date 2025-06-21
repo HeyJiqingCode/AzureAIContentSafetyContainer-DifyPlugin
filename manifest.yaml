@@ -1,4 +1,4 @@
-version: 0.0.1
+version: 0.0.2
 type: plugin
 author: jiqing
 name: content-safety-container
@@ -6,8 +6,8 @@ label:
   en_US: Azure AI Content Safety Container
   zh_Hans: Azure AI Content Safety Container
 description:
-  en_US: Azure AI Content Safety Container for Text Moderation
-  zh_Hans: Azure AI Content Safety Container for Text Moderation
+  en_US: Azure AI Content Safety Container for Text and Image Moderation
+  zh_Hans: Azure AI Content Safety Container for Text and Image Moderation
 icon: icon.svg
 resource:
   memory: 268435456
@@ -18,7 +18,7 @@ plugins:
   tools:
     - provider/content-safety-container.yaml
 meta:
-  version: 0.0.1
+  version: 0.0.2
   arch:
     - amd64
     - arm64

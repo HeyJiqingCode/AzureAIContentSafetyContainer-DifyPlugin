@@ -105,7 +105,7 @@ On the Dify navigation page, go to Tools > Azure AI Content Safety Container > T
 
 **3）Using the tool**
 
-You can use this tool in both Chatflow and Workflow, and it allows you to separately retrieve input and output content.
+You can use this tool in Chatflow or Workflow.
 
 ![img](./_assets/configuration_steps-3.png)
 

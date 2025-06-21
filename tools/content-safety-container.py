@@ -1,12 +1,11 @@
 from collections.abc import Generator
 from typing import Any
-
 from dify_plugin import Tool
 from dify_plugin.entities.tool import ToolInvokeMessage
 
 # Import utility functions
-from utils.content_safety_api import analyze_content_safety, parse_content_safety_result
-
+from utils.text_content_safety import analyze_text_content_safety
+from utils.parse_check_result import parse_check_result
 
 class ContentSafetyContainerTool(Tool):
     def _invoke(self, tool_parameters: dict[str, Any]) -> Generator[ToolInvokeMessage, None, None]:
@@ -25,15 +24,7 @@ class ContentSafetyContainerTool(Tool):
         api_endpoint = credentials.get("api_endpoint", "")
         api_version = credentials.get("api_version", "")
         
-        if not api_endpoint:
-            yield self.create_text_message("Error: API endpoint not configured, please configure in plugin settings")
-            return
-            
-        if not api_version:
-            yield self.create_text_message("Error: API version not configured, please configure in plugin settings")
-            return
-        
-        # Get optional authentication information
+        # Get optional Header information
         header_key = credentials.get("header_key")
         header_value = credentials.get("header_value")
         
@@ -49,7 +40,7 @@ class ContentSafetyContainerTool(Tool):
         
         try:
             # Call Content Safety API
-            api_response = analyze_content_safety(
+            api_response = analyze_text_content_safety(
                 api_endpoint=api_endpoint,
                 api_version=api_version,
                 text=text,
@@ -60,7 +51,7 @@ class ContentSafetyContainerTool(Tool):
             )
             
             # Parse API response
-            result = parse_content_safety_result(api_response)
+            result = parse_check_result(api_response)
             
             # Return parsed results
             yield self.create_json_message(result)
