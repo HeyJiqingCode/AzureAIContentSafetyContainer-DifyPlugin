@@ -2,8 +2,6 @@
 
 This privacy policy applies to the Azure AI Content Safety Container plugin (the "Plugin"). The Plugin is developed by [jiqing](https://github.com/HeyJiqingCode) and is designed to provide text content safety detection services for Dify platform users.
 
-**Important Note**: This repository includes a `dataset/` folder containing test data for security validation purposes. This test data does not represent the author's views and is not processed or transmitted by the Plugin during normal operation.
-
 ### 2. Data Collection
 
 The Plugin processes the following data during operation:
@@ -15,11 +13,6 @@ The Plugin processes the following data during operation:
 #### 2.2 Configuration Data
 - **API Endpoint**: Complete Azure AI Content Safety API endpoint URL configured by users
 - **Authentication Information**: Optional custom header key-value pairs provided by users for API authentication
-
-#### 2.3 Test Data (Not Processed by Plugin)
-- The repository includes test datasets in the `dataset/` folder for development and validation purposes
-- **This test data is not processed, transmitted, or accessed by the Plugin during normal operation**
-- Test data exists only for security testing and quality assurance purposes
 
 ### 3. Data Processing
 
