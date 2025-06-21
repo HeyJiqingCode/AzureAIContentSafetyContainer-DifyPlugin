@@ -2,7 +2,7 @@ identity:
   name: "content-safety-container"
   author: "jiqing"
   label:
-    en_US: "Content moderation"
+    en_US: "Content Moderation"
     zh_Hans: "内容审核"
 description:
   human:
