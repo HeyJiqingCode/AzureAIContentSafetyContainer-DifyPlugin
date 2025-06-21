@@ -110,10 +110,17 @@ On the Dify navigation page, go to Tools > Azure AI Content Safety Container > T
 
 You can use this tool in Chatflow or Workflow. The tool accepts both text and image inputs.
 
+**Parameters:**
+
 - `Text to Analyze`: The text content to analyze.
 - `Images to Analyze`: The image files to analyze.
 - `Text Blocklist Names`: Comma-separated list of blocklist names for text analysis.
 - `Halt on Blocklist Hit`: Whether to stop text analysis if a blocklist item is matched.
+
+**Image Requirements:**
+- Maximum size: 7,200 x 7,200 pixels
+- Maximum file size: 4 MB
+- Minimum size: 50 x 50 pixels
 
 ![img](./_assets/configuration_steps-3.png)
 
