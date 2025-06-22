@@ -223,7 +223,6 @@ The tool provides several output variables for use in your workflow:
 
 The `dataset/` folder contains test data for security validation and penetration testing. **This data does not represent the author's views and is provided solely for technical testing purposes.**
 
-### Contents
 - `harmful_text.csv` - Test prompts for content safety detection
 - `test_block_list_cn.csv` - Chinese blocklist for filtering tests  
 - `test_block_list_en.csv` - English blocklist for filtering tests
