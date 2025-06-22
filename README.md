@@ -1,6 +1,8 @@
 # Azure AI Content Safety Container
 
 > ⚠️ **DISCLAIMER:** This software is provided "as is" and the author disclaims all warranties with regard to this software including all implied warranties of merchantability and fitness. In no event shall the author be liable for any special, direct, indirect, or consequential damages or any damages whatsoever resulting from loss of use, data or profits, whether in an action of contract, negligence or other tortious action, arising out of or in connection with the use or performance of this software.
+>
+> 🔒 **SECURITY:** This plugin processes text and image content through external API calls to Azure AI Content Safety services. Please ensure you comply with your organization's data privacy policies and Azure's terms of service when using this plugin. The plugin author is not responsible for any data privacy or security issues arising from the use of this software.
 
 ## Overview
 
