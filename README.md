@@ -137,7 +137,7 @@ The structure of `sys.files` is as follows:
 
 **1）Get Azure AI Content Safety Container Tools**
 
-Azure AI Content Safety Container can be installed via [Plugin Marketplace](https://marketplace.dify.ai/), [Github](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin.git) or [Local Package File](). Please choose the installation method that best suits your needs. If you are installing via Local Package File, please set `FORCE_VERIFYING_SIGNATURE=false` for the `plugin-daemon` component.
+Azure AI Content Safety Container can be installed via [Plugin Marketplace](https://marketplace.dify.ai/), [Github](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin.git) or [Local Package File](https://github.com/HeyJiqingCode/AzureAIContentSafetyContainer-DifyPlugin/releases/tag/v0.0.2). Please choose the installation method that best suits your needs. If you are installing via Local Package File, please set `FORCE_VERIFYING_SIGNATURE=false` for the `plugin-daemon` component.
 
 **2）Authentication**
 
