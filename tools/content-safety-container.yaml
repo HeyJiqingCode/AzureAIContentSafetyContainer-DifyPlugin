@@ -10,6 +10,17 @@ description:
     zh_Hans: "使用 Azure AI Content Safety Container 分析文本和图像，以检测有害内容。"
   llm: "This tool analyzes text and images for potential harmful content using Azure AI Content Safety API. It checks for categories like hate, sexual, violence, and self-harm content."
 parameters:
+  - name: image
+    type: files
+    required: false
+    label:
+      en_US: Images to Analyze
+      zh_Hans: 待分析图片
+    human_description:
+      en_US: "The image content to analyze for safety"
+      zh_Hans: "要进行有害内容分析的图片内容，一般引用 sys.files"
+    llm_description: "The image content that needs to be analyzed for potential harmful content"
+    form: llm
   - name: text
     type: string
     required: false
@@ -31,17 +42,6 @@ parameters:
       en_US: "Comma-separated list of blocklist names to check against"
       zh_Hans: "在有害内容分析中使用的黑名单名称，多个用逗号分隔"
     llm_description: "Optional comma-separated list of blocklist names to check the text against"
-    form: llm
-  - name: image
-    type: files
-    required: false
-    label:
-      en_US: Images to Analyze
-      zh_Hans: 待分析图片
-    human_description:
-      en_US: "The image content to analyze for safety"
-      zh_Hans: "要进行有害内容分析的图片内容，一般引用 sys.files"
-    llm_description: "The image content that needs to be analyzed for potential harmful content"
     form: llm
   - name: halt_on_blocklist_hit
     type: boolean
