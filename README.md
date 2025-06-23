@@ -144,6 +144,13 @@ On the Dify navigation page, go to [Tools] > [Azure AI Content Safety Container]
 ![img](./_assets/configuration_steps_1.png)
 ![img](./_assets/configuration_steps_2.png)
 
+**For example:**
+
+- API Endpoint: `https://xxx.azure-api.net`
+- API Version: `2024-05-01`
+- Custom Header Key: `Ocp-Apim-Subscription-Key`
+- Custom Header Value: `********************************`
+
 **3）Using the tool**
 
 You can use this tool in Chatflow or Workflow. The tool accepts both text and image inputs.
