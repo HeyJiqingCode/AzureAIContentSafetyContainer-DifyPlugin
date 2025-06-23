@@ -18,6 +18,9 @@ credentials_for_provider:
     help:
       en_US: The  API endpoint URL without path and version parameters
       zh_Hans: API 端点 URL，不包括路径和版本参数
+    placeholder:
+      en_US: "e.g., https://your-endpoint.azure.com"
+      zh_Hans: "例如， https://your-endpoint.azure.com"
   api_version:
     type: text-input
     required: true
@@ -28,8 +31,8 @@ credentials_for_provider:
       en_US: The  API Version (e.g., 2024-09-01)
       zh_Hans: API 版本（比如 2024-09-01）
     placeholder:
-      en_US: "2024-09-01"
-      zh_Hans: "2024-09-01"
+      en_US: "e.g., 2024-09-01"
+      zh_Hans: "例如，2024-09-01"
   header_key:
     type: text-input
     required: false
@@ -49,8 +52,8 @@ credentials_for_provider:
       en_US: Custom Header Value (Optional)
       zh_Hans: 自定义请求头值（可选）
     placeholder:
-      en_US: your-api-key
-      zh_Hans: your-api-key
+      en_US: your-subscription-key
+      zh_Hans: your-subscription-key
     help:
       en_US: Optional custom header value for API authentication
       zh_Hans: 用于 API 认证的可选自定义请求头值
